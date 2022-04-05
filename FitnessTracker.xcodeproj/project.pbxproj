@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		31575F3327FC1BD4003BAC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31575F3227FC1BD4003BAC1D /* AppDelegate.swift */; };
 		31575F3527FC1BD4003BAC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31575F3427FC1BD4003BAC1D /* SceneDelegate.swift */; };
-		31575F3727FC1BD4003BAC1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31575F3627FC1BD4003BAC1D /* ViewController.swift */; };
-		31575F3A27FC1BD4003BAC1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31575F3827FC1BD4003BAC1D /* Main.storyboard */; };
+		31575F3727FC1BD4003BAC1D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31575F3627FC1BD4003BAC1D /* MainViewController.swift */; };
 		31575F3C27FC1BD5003BAC1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31575F3B27FC1BD5003BAC1D /* Assets.xcassets */; };
 		31575F3F27FC1BD5003BAC1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31575F3D27FC1BD5003BAC1D /* LaunchScreen.storyboard */; };
+		31575F4D27FC2912003BAC1D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31575F4C27FC2912003BAC1D /* CalendarView.swift */; };
+		31575F4F27FC5420003BAC1D /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31575F4E27FC5420003BAC1D /* WeatherView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		31575F2F27FC1BD4003BAC1D /* FitnessTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31575F3227FC1BD4003BAC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31575F3427FC1BD4003BAC1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		31575F3627FC1BD4003BAC1D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		31575F3927FC1BD4003BAC1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		31575F3627FC1BD4003BAC1D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		31575F3B27FC1BD5003BAC1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		31575F3E27FC1BD5003BAC1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		31575F4027FC1BD5003BAC1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31575F4C27FC2912003BAC1D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		31575F4E27FC5420003BAC1D /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,64 @@
 		31575F3127FC1BD4003BAC1D /* FitnessTracker */ = {
 			isa = PBXGroup;
 			children = (
+				31575F4627FC200A003BAC1D /* Application */,
+				31575F4727FC202D003BAC1D /* Models */,
+				31575F4827FC203A003BAC1D /* Views */,
+				31575F4927FC2041003BAC1D /* Controllers */,
+				31575F4A27FC2070003BAC1D /* Resourses */,
+			);
+			path = FitnessTracker;
+			sourceTree = "<group>";
+		};
+		31575F4627FC200A003BAC1D /* Application */ = {
+			isa = PBXGroup;
+			children = (
 				31575F3227FC1BD4003BAC1D /* AppDelegate.swift */,
 				31575F3427FC1BD4003BAC1D /* SceneDelegate.swift */,
-				31575F3627FC1BD4003BAC1D /* ViewController.swift */,
-				31575F3827FC1BD4003BAC1D /* Main.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		31575F4727FC202D003BAC1D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		31575F4827FC203A003BAC1D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				31575F4B27FC2897003BAC1D /* MainVC */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		31575F4927FC2041003BAC1D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				31575F3627FC1BD4003BAC1D /* MainViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		31575F4A27FC2070003BAC1D /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
 				31575F3B27FC1BD5003BAC1D /* Assets.xcassets */,
 				31575F3D27FC1BD5003BAC1D /* LaunchScreen.storyboard */,
 				31575F4027FC1BD5003BAC1D /* Info.plist */,
 			);
-			path = FitnessTracker;
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		31575F4B27FC2897003BAC1D /* MainVC */ = {
+			isa = PBXGroup;
+			children = (
+				31575F4C27FC2912003BAC1D /* CalendarView.swift */,
+				31575F4E27FC5420003BAC1D /* WeatherView.swift */,
+			);
+			path = MainVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +178,6 @@
 			files = (
 				31575F3F27FC1BD5003BAC1D /* LaunchScreen.storyboard in Resources */,
 				31575F3C27FC1BD5003BAC1D /* Assets.xcassets in Resources */,
-				31575F3A27FC1BD4003BAC1D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +188,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31575F3727FC1BD4003BAC1D /* ViewController.swift in Sources */,
+				31575F4F27FC5420003BAC1D /* WeatherView.swift in Sources */,
+				31575F3727FC1BD4003BAC1D /* MainViewController.swift in Sources */,
 				31575F3327FC1BD4003BAC1D /* AppDelegate.swift in Sources */,
+				31575F4D27FC2912003BAC1D /* CalendarView.swift in Sources */,
 				31575F3527FC1BD4003BAC1D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +199,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		31575F3827FC1BD4003BAC1D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				31575F3927FC1BD4003BAC1D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		31575F3D27FC1BD5003BAC1D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -289,12 +333,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WAA8C53LKT;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FitnessTracker/Info.plist;
+				INFOPLIST_FILE = FitnessTracker/Resourses/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,7 +349,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -317,12 +362,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WAA8C53LKT;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FitnessTracker/Info.plist;
+				INFOPLIST_FILE = FitnessTracker/Resourses/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,7 +378,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
