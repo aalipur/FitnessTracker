@@ -13,6 +13,9 @@ class WeatherView: UIView {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Sunny"
+        label.adjustsFontSizeToFitWidth = true
+        label.textColor = .specialGray
+        label.font = .robotoMedium18()
         return label
     }()
     
@@ -22,6 +25,8 @@ class WeatherView: UIView {
         label.text = "Хорошая погода, чтобы позаниматься на улице"
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 2
+        label.textColor = .specialGray
+        label.font = .robotoMedium14()
         return label
     }()
     
@@ -43,7 +48,7 @@ class WeatherView: UIView {
     }
     
     private func setupViews() {
-        backgroundColor = #colorLiteral(red: 0.9764705882, green: 0.9764705882, blue: 0.9764705882, alpha: 1)
+        backgroundColor = . specialBackground
         layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
         [sunImageView, cloudinessLabel, weatherDescriptionLabel].forEach{ addSubview($0) }
