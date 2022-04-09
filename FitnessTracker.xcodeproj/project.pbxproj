@@ -15,6 +15,8 @@
 		313F42D928016BCE007052DB /* CalendarCollectionViewcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F42D828016BCE007052DB /* CalendarCollectionViewcell.swift */; };
 		313F42DB28017645007052DB /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F42DA28017645007052DB /* WorkoutTableViewCell.swift */; };
 		313F42DD28017A36007052DB /* UIStackView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F42DC28017A36007052DB /* UIStackView + Extensions.swift */; };
+		313F42DF28018299007052DB /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F42DE28018299007052DB /* StatisticViewController.swift */; };
+		313F42E128018A11007052DB /* ExerciseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313F42E028018A11007052DB /* ExerciseViewCell.swift */; };
 		31575F3327FC1BD4003BAC1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31575F3227FC1BD4003BAC1D /* AppDelegate.swift */; };
 		31575F3527FC1BD4003BAC1D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31575F3427FC1BD4003BAC1D /* SceneDelegate.swift */; };
 		31575F3727FC1BD4003BAC1D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31575F3627FC1BD4003BAC1D /* MainViewController.swift */; };
@@ -33,6 +35,8 @@
 		313F42D828016BCE007052DB /* CalendarCollectionViewcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewcell.swift; sourceTree = "<group>"; };
 		313F42DA28017645007052DB /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		313F42DC28017A36007052DB /* UIStackView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extensions.swift"; sourceTree = "<group>"; };
+		313F42DE28018299007052DB /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
+		313F42E028018A11007052DB /* ExerciseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewCell.swift; sourceTree = "<group>"; };
 		31575F2F27FC1BD4003BAC1D /* FitnessTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31575F3227FC1BD4003BAC1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31575F3427FC1BD4003BAC1D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 			children = (
 				313F42D828016BCE007052DB /* CalendarCollectionViewcell.swift */,
 				313F42DA28017645007052DB /* WorkoutTableViewCell.swift */,
+				313F42E028018A11007052DB /* ExerciseViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				31575F3627FC1BD4003BAC1D /* MainViewController.swift */,
+				313F42DE28018299007052DB /* StatisticViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -249,7 +255,9 @@
 				313F42DD28017A36007052DB /* UIStackView + Extensions.swift in Sources */,
 				31575F4F27FC5420003BAC1D /* WeatherView.swift in Sources */,
 				31575F3727FC1BD4003BAC1D /* MainViewController.swift in Sources */,
+				313F42DF28018299007052DB /* StatisticViewController.swift in Sources */,
 				31575F3327FC1BD4003BAC1D /* AppDelegate.swift in Sources */,
+				313F42E128018A11007052DB /* ExerciseViewCell.swift in Sources */,
 				313F42DB28017645007052DB /* WorkoutTableViewCell.swift in Sources */,
 				313F42D4280161B8007052DB /* UIColor + Extensions.swift in Sources */,
 				313F42D628016325007052DB /* UIFont + Extensions.swift in Sources */,

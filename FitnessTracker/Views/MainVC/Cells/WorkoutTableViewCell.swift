@@ -36,7 +36,7 @@ class WorkoutTableViewCell: UITableViewCell {
     
     private let workoutNameLabel: UILabel = {
        let label = UILabel()
-        label.text = "Pull Ups"
+        label.text = "PullUps"
         label.textColor = .specialBlack
         label.font = .robotoMedium22()
         label.translatesAutoresizingMaskIntoConstraints = false
