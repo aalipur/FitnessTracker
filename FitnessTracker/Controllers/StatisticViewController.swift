@@ -9,22 +9,23 @@ import UIKit
 
 class StatisticViewController: UIViewController {
     
-    private let mainLabel: UILabel = {
-       let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "STATISTICS"
-        label.font = .robotoMedium24()
-        label.textColor = .specialGray
-        return label
-    }()
+    private let mainLabel = UILabel(text: "STATISTICS", font: .robotoMedium24() ?? .systemFont(ofSize: 24), textColor: .specialGray)
     
-    private let exerciseLabel: UILabel = {
-       let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Exercises"
-        label.textColor = .specialLightBrown
-        label.font = .robotoMedium14()
-        return label
+    private let exerciseLabel = UILabel(text: "Exercises", font: .robotoMedium14() ?? .systemFont(ofSize: 14), textColor: .specialLightBrown)
+    
+    private lazy var segmentadControl: UISegmentedControl = {
+       let segmentedControl = UISegmentedControl(items: ["Week", "Month"])
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.backgroundColor = .specialGreen
+        segmentedControl.selectedSegmentTintColor = .specialYellow
+        let font = UIFont(name: "Roboto-Medium", size: 16)
+        segmentedControl.setTitleTextAttributes([.font: font as Any,
+                                                 .foregroundColor: UIColor.white], for: .normal)
+        segmentedControl.setTitleTextAttributes([.font: font as Any,
+                                                 .foregroundColor: UIColor.specialGray], for: .selected)
+        segmentedControl.addTarget(self, action: #selector(segmentChange), for: .valueChanged)
+        return segmentedControl
     }()
     
     private let tableView: UITableView = {
@@ -51,11 +52,16 @@ class StatisticViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .specialBackground
         tableView.register(ExerciseViewCell.self, forCellReuseIdentifier: idExerciseViewCell)
-        [mainLabel, exerciseLabel, tableView].forEach{ view.addSubview($0) }
+        [mainLabel, segmentadControl, exerciseLabel, tableView].forEach{ view.addSubview($0) }
     }
+    
     private func setupDelegates() {
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    @objc private func segmentChange() {
+        print("segmentChangeTapped")
     }
 }
 
@@ -89,7 +95,11 @@ extension StatisticViewController {
             mainLabel.heightAnchor.constraint(equalToConstant: 24),
             mainLabel.widthAnchor.constraint(equalToConstant: 136),
             
-            exerciseLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 75),
+            segmentadControl.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 31),
+            segmentadControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 23),
+            segmentadControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -23),
+            
+            exerciseLabel.topAnchor.constraint(equalTo: segmentadControl.bottomAnchor, constant: 15),
             exerciseLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 21),
             exerciseLabel.heightAnchor.constraint(equalToConstant: 21),
             exerciseLabel.widthAnchor.constraint(equalToConstant: 120),
