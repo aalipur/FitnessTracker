@@ -34,6 +34,8 @@
 		31A56F952809DFA800AB6937 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A56F942809DFA800AB6937 /* WorkoutModel.swift */; };
 		31A56F982809E18600AB6937 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A56F972809E18600AB6937 /* RealmManager.swift */; };
 		31A56F9A2809E83000AB6937 /* Date + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A56F992809E83000AB6937 /* Date + Extensions.swift */; };
+		31A56F9C2809F2A100AB6937 /* StartWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A56F9B2809F2A100AB6937 /* StartWorkoutViewController.swift */; };
+		31A56F9F2809F91F00AB6937 /* StartWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A56F9E2809F91F00AB6937 /* StartWorkoutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		31A56F942809DFA800AB6937 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		31A56F972809E18600AB6937 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		31A56F992809E83000AB6937 /* Date + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extensions.swift"; sourceTree = "<group>"; };
+		31A56F9B2809F2A100AB6937 /* StartWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutViewController.swift; sourceTree = "<group>"; };
+		31A56F9E2809F91F00AB6937 /* StartWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,7 @@
 		31575F4827FC203A003BAC1D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				31A56F9D2809F8EF00AB6937 /* StartWorkoutVC */,
 				315C2E742805F4E300780815 /* NewWorkoutVC */,
 				31575F4B27FC2897003BAC1D /* MainVC */,
 			);
@@ -182,6 +187,7 @@
 				315C2E702805E21C00780815 /* MainTabBarController.swift */,
 				313F42DE28018299007052DB /* StatisticViewController.swift */,
 				315C2E722805E6AC00780815 /* NewWorkoutViewController.swift */,
+				31A56F9B2809F2A100AB6937 /* StartWorkoutViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -238,6 +244,14 @@
 				31A56F972809E18600AB6937 /* RealmManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		31A56F9D2809F8EF00AB6937 /* StartWorkoutVC */ = {
+			isa = PBXGroup;
+			children = (
+				31A56F9E2809F91F00AB6937 /* StartWorkoutView.swift */,
+			);
+			path = StartWorkoutVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,8 +349,10 @@
 				31575F4D27FC2912003BAC1D /* CalendarView.swift in Sources */,
 				313F42D228016059007052DB /* UIView + Extensions.swift in Sources */,
 				315C2E732805E6AC00780815 /* NewWorkoutViewController.swift in Sources */,
+				31A56F9C2809F2A100AB6937 /* StartWorkoutViewController.swift in Sources */,
 				315C2E6F2805DA0C00780815 /* UILabel + Extensions.swift in Sources */,
 				31A56F982809E18600AB6937 /* RealmManager.swift in Sources */,
+				31A56F9F2809F91F00AB6937 /* StartWorkoutView.swift in Sources */,
 				31575F3527FC1BD4003BAC1D /* SceneDelegate.swift in Sources */,
 				31A56F9A2809E83000AB6937 /* Date + Extensions.swift in Sources */,
 				315C2E7A2806018A00780815 /* RepsOrTimerView.swift in Sources */,
