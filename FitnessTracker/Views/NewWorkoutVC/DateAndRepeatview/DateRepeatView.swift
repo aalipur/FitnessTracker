@@ -9,8 +9,8 @@ import UIKit
 
 class DateRepeatView: UIView {
     
-    private let dateLabel = UILabel(text: "Date", font: .robotoMedium18() ?? .systemFont(ofSize: 18), textColor: .specialGray)
-    private let repeatLabel = UILabel(text: "Repeat every 7 days", font: .robotoMedium18() ?? .systemFont(ofSize: 18), textColor: .specialGray)
+    private let dateLabel = UILabel(text: "Date", font: .robotoMedium18(), textColor: .specialGray)
+    private let repeatLabel = UILabel(text: "Repeat every 7 days", font: .robotoMedium18(), textColor: .specialGray)
     
     private let datePicker: UIDatePicker = {
        let datePicker = UIDatePicker()
@@ -36,6 +36,14 @@ class DateRepeatView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func getDateRepeat() -> (Date, Bool) {
+        (datePicker.date, testSwitch.isOn)
+    }
+    
+    public func setDateRepeat() -> (Date, Bool) {
+        getDateRepeat()
     }
     
     private func setupViews() {

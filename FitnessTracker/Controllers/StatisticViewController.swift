@@ -9,9 +9,9 @@ import UIKit
 
 class StatisticViewController: UIViewController {
     
-    private let mainLabel = UILabel(text: "STATISTICS", font: .robotoMedium24() ?? .systemFont(ofSize: 24), textColor: .specialGray)
+    private let mainLabel = UILabel(text: "STATISTICS", font: .robotoMedium24(), textColor: .specialGray)
     
-    private let exerciseLabel = UILabel(text: "Exercises", font: .robotoMedium14() ?? .systemFont(ofSize: 14), textColor: .specialLightBrown)
+    private let exerciseLabel = UILabel(text: "Exercises", font: .robotoMedium14(), textColor: .specialLightBrown)
     
     private lazy var segmentadControl: UISegmentedControl = {
        let segmentedControl = UISegmentedControl(items: ["Week", "Month"])

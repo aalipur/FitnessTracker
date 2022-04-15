@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewWorkoutViewController: UIViewController {
     
-    private let mainLabel = UILabel(text: "NEW WORKOUT", font: .robotoMedium24() ?? .systemFont(ofSize: 24), textColor: .specialGray)
+    private let mainLabel = UILabel(text: "NEW WORKOUT", font: .robotoMedium24(), textColor: .specialGray)
     
     private lazy var closeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -20,7 +21,7 @@ class NewWorkoutViewController: UIViewController {
         return button
     }()
     
-    private let nameLabel = UILabel(text: "Name", font: .robotoMedium14() ?? .systemFont(ofSize: 14), textColor: .specialLightBrown)
+    private let nameLabel = UILabel(text: "Name", font: .robotoMedium14(), textColor: .specialLightBrown)
     
     private let nameTextfield: UITextField = {
        let textField = UITextField()
@@ -37,19 +38,43 @@ class NewWorkoutViewController: UIViewController {
         return textField
     }()
     
-    private let dateRepeatLabel = UILabel(text: "Date and repeat", font: .robotoMedium14() ?? .systemFont(ofSize: 14), textColor: .specialLightBrown)
-    private let repsTimerLabel = UILabel(text: "Reps or timer", font: .robotoMedium14() ?? .systemFont(ofSize: 14), textColor: .specialLightBrown)
-    private let dateRepaetView = DateRepeatView()
+    private let dateRepeatLabel = UILabel(text: "Date and repeat", font: .robotoMedium14(), textColor: .specialLightBrown)
+    private let repsTimerLabel = UILabel(text: "Reps or timer", font: .robotoMedium14(), textColor: .specialLightBrown)
+    private let dateRepeatView = DateRepeatView()
     private let repsTimerView = RepsOrTimerView()
     
-    private let saveButton: UIButton = {
+    private lazy var saveButton: UIButton = {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("SAVE", for: .normal)
         button.backgroundColor = .specialGreen
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+//MARK: Realm
+    private let localRealm = try! Realm()
+    private var workoutModel = WorkoutModel()
+    
+    private var testImage = UIImage(named: "testWorkout")
+    
+    private func setModel() {
+        guard let nameWorkout = nameTextfield.text else { return }
+        workoutModel.workoutName = nameWorkout
+        
+        let dateFromPicker = dateRepeatView.setDateRepeat().0
+        workoutModel.workoutDate = dateFromPicker
+        workoutModel.woroutNumberOfDay = dateFromPicker.getWeekDayNumber()
+        
+        workoutModel.workoutRepeat = dateRepeatView.setDateRepeat().1
+        workoutModel.workoutSets = repsTimerView.setSliderValue().0
+        workoutModel.workoutReps = repsTimerView.setSliderValue().1
+        workoutModel.workoutTimer = repsTimerView.setSliderValue().2
+        
+        guard let imageData = testImage?.pngData() else { return }
+        workoutModel.workoutImage = imageData
+    }
 
 //MARK: viewController lifecycle
     override func viewDidLoad() {
@@ -70,11 +95,17 @@ class NewWorkoutViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .specialBackground
         [mainLabel, closeButton, nameLabel, nameTextfield, dateRepeatLabel,
-         dateRepaetView, repsTimerLabel, repsTimerView, saveButton].forEach{ view.addSubview($0) }
+         dateRepeatView, repsTimerLabel, repsTimerView, saveButton].forEach{ view.addSubview($0) }
     }
     
+//MARK: @objc functions
     @objc private func closeButtonTapped() {
         dismiss(animated: true)
+    }
+    
+    @objc private func saveButtonTapped() {
+        setModel()
+        RealmManager.shared.saveWorkoutModel(model: workoutModel)
     }
 }
 
@@ -106,12 +137,12 @@ extension NewWorkoutViewController {
             dateRepeatLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             dateRepeatLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
             
-            dateRepaetView.topAnchor.constraint(equalTo: dateRepeatLabel.bottomAnchor, constant: 3),
-            dateRepaetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            dateRepaetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            dateRepaetView.heightAnchor.constraint(equalToConstant: 92),
+            dateRepeatView.topAnchor.constraint(equalTo: dateRepeatLabel.bottomAnchor, constant: 3),
+            dateRepeatView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            dateRepeatView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            dateRepeatView.heightAnchor.constraint(equalToConstant: 92),
             
-            repsTimerLabel.topAnchor.constraint(equalTo: dateRepaetView.bottomAnchor, constant: 10),
+            repsTimerLabel.topAnchor.constraint(equalTo: dateRepeatView.bottomAnchor, constant: 10),
             repsTimerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             repsTimerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
             

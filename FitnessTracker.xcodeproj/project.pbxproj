@@ -29,6 +29,11 @@
 		315C2E732805E6AC00780815 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315C2E722805E6AC00780815 /* NewWorkoutViewController.swift */; };
 		315C2E782805F6E800780815 /* DateRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315C2E772805F6E800780815 /* DateRepeatView.swift */; };
 		315C2E7A2806018A00780815 /* RepsOrTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315C2E792806018A00780815 /* RepsOrTimerView.swift */; };
+		31A56F912809DD8600AB6937 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 31A56F902809DD8600AB6937 /* Realm */; };
+		31A56F932809DD8600AB6937 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31A56F922809DD8600AB6937 /* RealmSwift */; };
+		31A56F952809DFA800AB6937 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A56F942809DFA800AB6937 /* WorkoutModel.swift */; };
+		31A56F982809E18600AB6937 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A56F972809E18600AB6937 /* RealmManager.swift */; };
+		31A56F9A2809E83000AB6937 /* Date + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A56F992809E83000AB6937 /* Date + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +61,9 @@
 		315C2E722805E6AC00780815 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 		315C2E772805F6E800780815 /* DateRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRepeatView.swift; sourceTree = "<group>"; };
 		315C2E792806018A00780815 /* RepsOrTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsOrTimerView.swift; sourceTree = "<group>"; };
+		31A56F942809DFA800AB6937 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		31A56F972809E18600AB6937 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		31A56F992809E83000AB6937 /* Date + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31A56F932809DD8600AB6937 /* RealmSwift in Frameworks */,
+				31A56F912809DD8600AB6937 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				313F42CB28015460007052DB /* UIKit */,
+				31A56F992809E83000AB6937 /* Date + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -131,6 +142,7 @@
 				31575F4727FC202D003BAC1D /* Models */,
 				31575F4827FC203A003BAC1D /* Views */,
 				31575F4927FC2041003BAC1D /* Controllers */,
+				31A56F962809E16000AB6937 /* Services */,
 				313F42CA2801544B007052DB /* Extensions */,
 				31575F4A27FC2070003BAC1D /* Resourses */,
 			);
@@ -149,6 +161,7 @@
 		31575F4727FC202D003BAC1D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				31A56F942809DFA800AB6937 /* WorkoutModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -166,8 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				31575F3627FC1BD4003BAC1D /* MainViewController.swift */,
-				313F42DE28018299007052DB /* StatisticViewController.swift */,
 				315C2E702805E21C00780815 /* MainTabBarController.swift */,
+				313F42DE28018299007052DB /* StatisticViewController.swift */,
 				315C2E722805E6AC00780815 /* NewWorkoutViewController.swift */,
 			);
 			path = Controllers;
@@ -219,6 +232,14 @@
 			path = RepsOrTimerView;
 			sourceTree = "<group>";
 		};
+		31A56F962809E16000AB6937 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				31A56F972809E18600AB6937 /* RealmManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -235,6 +256,10 @@
 			dependencies = (
 			);
 			name = FitnessTracker;
+			packageProductDependencies = (
+				31A56F902809DD8600AB6937 /* Realm */,
+				31A56F922809DD8600AB6937 /* RealmSwift */,
+			);
 			productName = FitnessTracker;
 			productReference = 31575F2F27FC1BD4003BAC1D /* FitnessTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -263,6 +288,9 @@
 				Base,
 			);
 			mainGroup = 31575F2627FC1BD4003BAC1D;
+			packageReferences = (
+				31A56F8F2809DD8600AB6937 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 31575F3027FC1BD4003BAC1D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -298,6 +326,7 @@
 				313F42DF28018299007052DB /* StatisticViewController.swift in Sources */,
 				31575F3327FC1BD4003BAC1D /* AppDelegate.swift in Sources */,
 				313F42E128018A11007052DB /* ExerciseViewCell.swift in Sources */,
+				31A56F952809DFA800AB6937 /* WorkoutModel.swift in Sources */,
 				313F42DB28017645007052DB /* WorkoutTableViewCell.swift in Sources */,
 				313F42D4280161B8007052DB /* UIColor + Extensions.swift in Sources */,
 				313F42D628016325007052DB /* UIFont + Extensions.swift in Sources */,
@@ -307,7 +336,9 @@
 				313F42D228016059007052DB /* UIView + Extensions.swift in Sources */,
 				315C2E732805E6AC00780815 /* NewWorkoutViewController.swift in Sources */,
 				315C2E6F2805DA0C00780815 /* UILabel + Extensions.swift in Sources */,
+				31A56F982809E18600AB6937 /* RealmManager.swift in Sources */,
 				31575F3527FC1BD4003BAC1D /* SceneDelegate.swift in Sources */,
+				31A56F9A2809E83000AB6937 /* Date + Extensions.swift in Sources */,
 				315C2E7A2806018A00780815 /* RepsOrTimerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,6 +551,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		31A56F8F2809DD8600AB6937 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		31A56F902809DD8600AB6937 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31A56F8F2809DD8600AB6937 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		31A56F922809DD8600AB6937 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31A56F8F2809DD8600AB6937 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 31575F2727FC1BD4003BAC1D /* Project object */;
 }

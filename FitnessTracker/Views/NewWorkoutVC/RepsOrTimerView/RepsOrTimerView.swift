@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RepsOrTimerView: UIView {
     
-    private let setsLabel = UILabel(text: "Sets", font: .robotoMedium18() ?? .systemFont(ofSize: 18), textColor: .specialGray)
-    private let repsLabel = UILabel(text: "Reps", font: .robotoMedium18() ?? .systemFont(ofSize: 18), textColor: .specialGray)
-    private let timerLabel = UILabel(text: "Timer", font: .robotoMedium18() ?? .systemFont(ofSize: 18), textColor: .specialGray)
-    private let repsOrTimerLabel = UILabel(text: "Choose repeat or timer", font: .robotoMedium14() ?? .systemFont(ofSize: 14), textColor: .specialLightBrown)
+    private let setsLabel = UILabel(text: "Sets", font: .robotoMedium18(), textColor: .specialGray)
+    private let repsLabel = UILabel(text: "Reps", font: .robotoMedium18(), textColor: .specialGray)
+    private let timerLabel = UILabel(text: "Timer", font: .robotoMedium18(), textColor: .specialGray)
+    private let repsOrTimerLabel = UILabel(text: "Choose repeat or timer", font: .robotoMedium14(), textColor: .specialLightBrown)
     
     private let numberOfSetsLabel: UILabel = {
        let label = UILabel()
@@ -41,34 +42,36 @@ class RepsOrTimerView: UIView {
         return label
     }()
     
-    private let setsSlider: UISlider = {
+    private lazy var setsSlider: UISlider = {
            let slider = UISlider()
             slider.translatesAutoresizingMaskIntoConstraints = false
             slider.minimumValue = 0
             slider.maximumValue = 10
             slider.maximumTrackTintColor = .specialLightBrown
             slider.minimumTrackTintColor = .specialGreen
-            //slider.setThumbImage(UIImage(named: "sun"), for: .normal)
+            slider.addTarget(self, action: #selector(setsSliderChange), for: .valueChanged)
             return slider
         }()
     
-    private let RepsSlider: UISlider = {
+    private lazy var repsSlider: UISlider = {
            let slider = UISlider()
             slider.translatesAutoresizingMaskIntoConstraints = false
             slider.minimumValue = 0
             slider.maximumValue = 10
             slider.maximumTrackTintColor = .specialLightBrown
             slider.minimumTrackTintColor = .specialGreen
+            slider.addTarget(self, action: #selector(repsSliderChange), for: .valueChanged)
             return slider
         }()
     
-    private let timerSlider: UISlider = {
+    private lazy var timerSlider: UISlider = {
            let slider = UISlider()
             slider.translatesAutoresizingMaskIntoConstraints = false
             slider.minimumValue = 0
             slider.maximumValue = 10
             slider.maximumTrackTintColor = .specialLightBrown
             slider.minimumTrackTintColor = .specialGreen
+            slider.addTarget(self, action: #selector(timerSliderChange), for: .valueChanged)
             return slider
         }()
 
@@ -82,14 +85,60 @@ class RepsOrTimerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: functions
     private func setupViews() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 10
         backgroundColor = .specialBrown
         [setsLabel, numberOfSetsLabel, setsSlider, repsOrTimerLabel,
-         repsLabel, numberOfRepsLabel, RepsSlider,
+         repsLabel, numberOfRepsLabel, repsSlider,
          timerLabel, timeLabel, timerSlider,
          ].forEach{ addSubview($0) }
+    }
+    
+    private func setNegative(label: UILabel, numberLabel: UILabel, slider: UISlider) {
+        label.alpha = 0.5
+        numberLabel.alpha = 0.5
+        numberLabel.text = "0"
+        slider.alpha = 0.5
+        slider.value = 0
+    }
+    
+    private func setActive(label: UILabel, numberLabel: UILabel, slider: UISlider) {
+        label.alpha = 1.0
+        numberLabel.alpha = 1.0
+        slider.alpha = 1
+    }
+    
+    private func getSliderValue() -> (Int, Int, Int) {
+        let setsSliderValue = Int(setsSlider.value)
+        let repsSliderValue = Int(repsSlider.value)
+        let timerSliderValue = Int(timerSlider.value)
+        return (setsSliderValue, repsSliderValue, timerSliderValue)
+    }
+    
+    public func setSliderValue() -> (Int, Int, Int) {
+        getSliderValue()
+    }
+    
+    //MARK: @objc functions
+    @objc private func setsSliderChange() {
+        numberOfSetsLabel.text = "\(Int(setsSlider.value))"
+    }
+    
+    @objc private func repsSliderChange() {
+        numberOfRepsLabel.text = "\(Int(repsSlider.value))"
+        setNegative(label: timerLabel, numberLabel: timeLabel, slider: timerSlider)
+        setActive(label: repsLabel, numberLabel: numberOfRepsLabel, slider: repsSlider)
+    }
+    
+    @objc private func timerSliderChange() {
+        let (min, sec) = { (secs: Int) -> (Int, Int) in
+            (secs / 60, secs % 60)
+        }(Int(timerSlider.value))
+        timeLabel.text = (sec != 0 ? "\(min) min \(sec) sec" : "\(min) min")
+        setNegative(label: repsLabel, numberLabel: numberOfRepsLabel, slider: repsSlider)
+        setActive(label: timerLabel, numberLabel: timeLabel, slider: timerSlider)
     }
 }
 
@@ -120,11 +169,11 @@ extension RepsOrTimerView {
             numberOfRepsLabel.centerYAnchor.constraint(equalTo: repsLabel.centerYAnchor),
             numberOfRepsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -13),
             
-            RepsSlider.topAnchor.constraint(equalTo: numberOfRepsLabel.bottomAnchor, constant: 16),
-            RepsSlider.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
-            RepsSlider.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -14),
+            repsSlider.topAnchor.constraint(equalTo: numberOfRepsLabel.bottomAnchor, constant: 16),
+            repsSlider.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
+            repsSlider.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -14),
             
-            timerLabel.topAnchor.constraint(equalTo: RepsSlider.topAnchor, constant: 42),
+            timerLabel.topAnchor.constraint(equalTo: repsSlider.topAnchor, constant: 42),
             timerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14),
             timerLabel.heightAnchor.constraint(equalToConstant: 21),
             timerLabel.widthAnchor.constraint(equalToConstant: 88),
