@@ -100,6 +100,7 @@ class MainViewController: UIViewController {
     private func setupDelegates() {
         tableView.dataSource = self
         tableView.delegate = self
+        calendarView.cellCollectionViewDelegate = self
     }
     
 //MARK: @objc functions
@@ -111,7 +112,7 @@ class MainViewController: UIViewController {
     }
 }
 
-//MARK: extensions
+//MARK: UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -123,6 +124,7 @@ extension MainViewController: UITableViewDataSource {
     }
 }
 
+//MARK: UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -130,6 +132,14 @@ extension MainViewController: UITableViewDelegate {
     }
 }
 
+//MARK: SelectCollectionViewItem
+extension MainViewController: SelectCollectionViewItem {
+    func selectItem(date: Date) {
+        print(date)
+    }
+}
+
+//MARK: SetupConstraints
 extension MainViewController {
     
     private func setupConstraints() {

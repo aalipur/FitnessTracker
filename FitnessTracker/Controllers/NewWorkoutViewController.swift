@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import RealmSwift
 
 class NewWorkoutViewController: UIViewController {
     
@@ -54,7 +53,6 @@ class NewWorkoutViewController: UIViewController {
     }()
     
 //MARK: Realm
-    private let localRealm = try! Realm()
     private var workoutModel = WorkoutModel()
     
     private var testImage = UIImage(named: "testWorkout")
@@ -80,7 +78,9 @@ class NewWorkoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupDelegates()
         setupConstraints()
+        addTaps()
     }
     
     override func viewDidLayoutSubviews() {
@@ -98,6 +98,41 @@ class NewWorkoutViewController: UIViewController {
          dateRepeatView, repsTimerLabel, repsTimerView, saveButton].forEach{ view.addSubview($0) }
     }
     
+    private func setupDelegates() {
+        nameTextfield.delegate = self
+    }
+    
+    private func addTaps() {
+        let tapScreen = UITapGestureRecognizer(target: self, action: #selector(hideKeyBoard))
+        view.addGestureRecognizer(tapScreen)
+        
+        let swipeScreen = UISwipeGestureRecognizer(target: self, action: #selector(swipeHideKeyBoard))
+        swipeScreen.cancelsTouchesInView = false
+        view.addGestureRecognizer(swipeScreen)
+    }
+    
+    private func saveModel() {
+        guard let text = nameTextfield.text else { return }
+        let count = text.filter { $0.isNumber || $0.isLetter }.count
+        
+        if count != 0 &&
+            workoutModel.workoutSets != 0 &&
+            (workoutModel.workoutReps != 0 || workoutModel.workoutTimer != 0) {
+                RealmManager.shared.saveWorkoutModel(model: workoutModel)
+                workoutModel = WorkoutModel() // обновляем модель после сохранения, чтобы можно сохранить на том же экране новое упражнение
+            alertOK(title: "Success", message: nil)
+            refreashObjects()
+        } else {
+            alertOK(title: "Error", message: "Enter all parameters.")
+        }
+    }
+    
+    private func refreashObjects() {
+        dateRepeatView.refreashDatePickreAndSwitch()
+        repsTimerView.refreashLabelsAndSliders()
+        nameTextfield.text = ""
+    }
+    
 //MARK: @objc functions
     @objc private func closeButtonTapped() {
         dismiss(animated: true)
@@ -105,11 +140,27 @@ class NewWorkoutViewController: UIViewController {
     
     @objc private func saveButtonTapped() {
         setModel()
-        RealmManager.shared.saveWorkoutModel(model: workoutModel)
+        saveModel()
+    }
+    
+    @objc private func hideKeyBoard() {
+        view.endEditing(true) // по тапу на экране скрыть клавиатуру
+    }
+    
+    @objc private func swipeHideKeyBoard() {
+        view.endEditing(true) // по свайпу на экране скрыть клавиатуру
     }
 }
 
-//MARK: extensions
+//MARK: UITextFieldDelegate
+extension NewWorkoutViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTextfield.resignFirstResponder() //скрыть клавиатуру по нажатию на кл готово или return
+    }
+}
+
+//MARK: SetupConstraints
 extension NewWorkoutViewController {
     
     private func setupConstraints() {

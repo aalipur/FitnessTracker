@@ -31,6 +31,7 @@
 		315C2E732805E6AC00780815 /* NewWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315C2E722805E6AC00780815 /* NewWorkoutViewController.swift */; };
 		315C2E782805F6E800780815 /* DateRepeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315C2E772805F6E800780815 /* DateRepeatView.swift */; };
 		315C2E7A2806018A00780815 /* RepsOrTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315C2E792806018A00780815 /* RepsOrTimerView.swift */; };
+		3182AC3E28278ACD00AE66A0 /* SimpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3182AC3D28278ACD00AE66A0 /* SimpleAlert.swift */; };
 		31A56F912809DD8600AB6937 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 31A56F902809DD8600AB6937 /* Realm */; };
 		31A56F932809DD8600AB6937 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 31A56F922809DD8600AB6937 /* RealmSwift */; };
 		31A56F952809DFA800AB6937 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A56F942809DFA800AB6937 /* WorkoutModel.swift */; };
@@ -67,6 +68,7 @@
 		315C2E722805E6AC00780815 /* NewWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutViewController.swift; sourceTree = "<group>"; };
 		315C2E772805F6E800780815 /* DateRepeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRepeatView.swift; sourceTree = "<group>"; };
 		315C2E792806018A00780815 /* RepsOrTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsOrTimerView.swift; sourceTree = "<group>"; };
+		3182AC3D28278ACD00AE66A0 /* SimpleAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAlert.swift; sourceTree = "<group>"; };
 		31A56F942809DFA800AB6937 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		31A56F972809E18600AB6937 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		31A56F992809E83000AB6937 /* Date + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extensions.swift"; sourceTree = "<group>"; };
@@ -185,10 +187,11 @@
 		31575F4827FC203A003BAC1D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				313C5F4C280AD1D100D0BAEF /* WorkoutVC */,
-				31A56F9D2809F8EF00AB6937 /* StartWorkoutVC */,
-				315C2E742805F4E300780815 /* NewWorkoutVC */,
+				3182AC3C28278A9200AE66A0 /* Alerts */,
 				31575F4B27FC2897003BAC1D /* MainVC */,
+				315C2E742805F4E300780815 /* NewWorkoutVC */,
+				31A56F9D2809F8EF00AB6937 /* StartWorkoutVC */,
+				313C5F4C280AD1D100D0BAEF /* WorkoutVC */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,6 +253,14 @@
 				315C2E792806018A00780815 /* RepsOrTimerView.swift */,
 			);
 			path = RepsOrTimerView;
+			sourceTree = "<group>";
+		};
+		3182AC3C28278A9200AE66A0 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				3182AC3D28278ACD00AE66A0 /* SimpleAlert.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 		31A56F962809E16000AB6937 /* Services */ = {
@@ -349,6 +360,7 @@
 			files = (
 				313C5F4B280ACFE600D0BAEF /* WorkoutViewController.swift in Sources */,
 				313F42DD28017A36007052DB /* UIStackView + Extensions.swift in Sources */,
+				3182AC3E28278ACD00AE66A0 /* SimpleAlert.swift in Sources */,
 				31575F4F27FC5420003BAC1D /* WeatherView.swift in Sources */,
 				315C2E712805E21C00780815 /* MainTabBarController.swift in Sources */,
 				31575F3727FC1BD4003BAC1D /* MainViewController.swift in Sources */,

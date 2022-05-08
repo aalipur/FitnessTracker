@@ -37,13 +37,22 @@ class DateRepeatView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+//MARK: functions
     private func getDateRepeat() -> (Date, Bool) {
         (datePicker.date, testSwitch.isOn)
     }
     
     public func setDateRepeat() -> (Date, Bool) {
         getDateRepeat()
+    }
+    
+    private func refreashWorkoutObjects() {
+        datePicker.setDate(Date(), animated: true)
+        testSwitch.isOn = true
+    }
+    
+    public func refreashDatePickreAndSwitch() {
+        refreashWorkoutObjects()
     }
     
     private func setupViews() {

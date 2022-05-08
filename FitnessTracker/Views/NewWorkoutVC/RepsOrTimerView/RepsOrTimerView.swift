@@ -121,6 +121,19 @@ class RepsOrTimerView: UIView {
         getSliderValue()
     }
     
+    private func refreashWorkoutObjects() {
+        numberOfSetsLabel.text = "0"
+        setsSlider.value = 0
+        numberOfRepsLabel.text = "0"
+        repsSlider.value = 0
+        timeLabel.text = "0"
+        timerSlider.value = 0
+    }
+    
+    public func refreashLabelsAndSliders() {
+        refreashWorkoutObjects()
+    }
+    
     //MARK: @objc functions
     @objc private func setsSliderChange() {
         numberOfSetsLabel.text = "\(Int(setsSlider.value))"
