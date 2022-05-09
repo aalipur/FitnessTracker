@@ -62,7 +62,7 @@ class NewWorkoutViewController: UIViewController {
         workoutModel.workoutName = nameWorkout
         
         let dateFromPicker = dateRepeatView.setDateRepeat().0
-        workoutModel.workoutDate = dateFromPicker
+        workoutModel.workoutDate = dateFromPicker.localDate()
         workoutModel.woroutNumberOfDay = dateFromPicker.getWeekDayNumber()
         
         workoutModel.workoutRepeat = dateRepeatView.setDateRepeat().1

@@ -64,7 +64,8 @@ class ExerciseViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-//MARK: functions
+    
+    //MARK: functions
     private func setupViews() {
         backgroundColor = .clear
         selectionStyle = .none
@@ -72,6 +73,21 @@ class ExerciseViewCell: UITableViewCell {
                                       axis: .horizontal,
                                       spacing: 10)
         [typeOfExerciseLabel, labelsStackView, numberLabel,bottomLineView].forEach{ addSubview($0) }
+    }
+    
+    func cellConfigure(differenceWorkout: DifferenceWorkout) {
+        typeOfExerciseLabel.text = differenceWorkout.name
+        beforeLabel.text = "Before: \(differenceWorkout.firstReps)"
+        nowLabel.text = "Now: \(differenceWorkout.lastReps)"
+        
+        let difference = differenceWorkout.lastReps - differenceWorkout.firstReps
+        numberLabel.text = "\(difference)"
+        
+        switch difference {
+            case ..<0 : numberLabel.textColor = .specialGreen
+            case 1...: numberLabel.textColor = .specialYellow
+            default: numberLabel.textColor = .specialGray
+        }
     }
 }
 

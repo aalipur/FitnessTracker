@@ -6,6 +6,14 @@
 //
 
 import UIKit
+import RealmSwift
+
+struct DifferenceWorkout { // лучшая практика вынести в отдельный файл
+    
+    let name: String
+    let lastReps: Int
+    let firstReps: Int
+}
 
 class StatisticViewController: UIViewController {
     
@@ -40,15 +48,30 @@ class StatisticViewController: UIViewController {
     }()
     
     private let idExerciseViewCell = "idExerciseViewCell"
-
+    
+    //MARK: Realm
+        private let localRealm = try! Realm() // можно через do catch  блок сделать избежать force unwrapp
+        private var workoutArray: Results<WorkoutModel>!
+    
+    private var differenceArray = [DifferenceWorkout]()
+    
+    //MARK: VC lifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
         setupDelegates()
+        setStartScreen()
     }
     
-//MARK: functions
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        differenceArray = [DifferenceWorkout]()
+        setStartScreen()
+        tableView.reloadData()
+    }
+    
+    //MARK: functions
     private func setupViews() {
         view.backgroundColor = .specialBackground
         tableView.register(ExerciseViewCell.self, forCellReuseIdentifier: idExerciseViewCell)
@@ -60,25 +83,75 @@ class StatisticViewController: UIViewController {
         tableView.delegate = self
     }
     
+    private func getWorkoutsName() -> [String] {
+        var nameArray = [String]()
+        workoutArray = localRealm.objects(WorkoutModel.self)
+        
+        for workoutModel in workoutArray {
+            if !nameArray.contains(workoutModel.workoutName) {
+                nameArray.append(workoutModel.workoutName)
+            }
+        }
+        return nameArray
+    }
+    
+    private func getDifferenceModel(dateStart: Date) {
+        let dateEnd = Date().localDate()
+        let nameArray = getWorkoutsName()
+        
+        for name in nameArray {
+            //NSPredicate
+            let predicateDifference = NSPredicate(format: "workoutName = '\(name)' AND workoutDate BETWEEN %@", [dateStart, dateEnd])
+            workoutArray = localRealm.objects(WorkoutModel.self).filter(predicateDifference).sorted(byKeyPath: "workoutDate")
+            
+            guard let last = workoutArray.last?.workoutReps,
+                  let first = workoutArray.first?.workoutReps else {
+                return
+            }
+            let differenceWorkout = DifferenceWorkout(name: name, lastReps: last, firstReps: first)
+            differenceArray.append(differenceWorkout)
+        }
+    }
+    
+    private func setStartScreen() {
+        let dateToday = Date().localDate()
+        getDifferenceModel(dateStart: dateToday.offsetDay(days: 7))
+        tableView.reloadData()
+    }
+    
+    //MARK: @objc functions
     @objc private func segmentChange() {
-        print("segmentChangeTapped")
+        let dateToday = Date().localDate()
+        differenceArray = [DifferenceWorkout]()
+        
+        if segmentadControl.selectedSegmentIndex == 0 {
+            let dateStart = dateToday.offsetDay(days: 7)
+            getDifferenceModel(dateStart: dateStart)
+        } else {
+            let dateStart = dateToday.offsetMonth(month: 1)
+            getDifferenceModel(dateStart: dateStart)
+        }
+        tableView.reloadData()
     }
 }
 
-//MARK: extensions
+//MARK: UITableViewDataSource
 extension StatisticViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        differenceArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: idExerciseViewCell, for: indexPath) as? ExerciseViewCell else {
             return UITableViewCell() }
+        let differenceModel = differenceArray[indexPath.row]
+        cell.cellConfigure(differenceWorkout: differenceModel)
         return cell
     }
 }
 
+//MARK: UITableViewDelegate
 extension StatisticViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -86,6 +159,7 @@ extension StatisticViewController: UITableViewDelegate {
     }
 }
 
+//MARK: SetupConstraints
 extension StatisticViewController {
     
     private func setupConstraints() {
